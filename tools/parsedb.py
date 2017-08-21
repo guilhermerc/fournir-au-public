@@ -15,7 +15,7 @@ with open(input_name, newline='') as csvinput_file:
         db_spreadsheet = csv.DictReader(csvinput_file, delimiter='\t', quotechar='"')
         db_output = csv.writer(csvoutput_file, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         for row in db_spreadsheet:
-            if row['Tipo de Refeição'] == 'Almoço' and int(row["Num. Refeicões RU"]) > 1 and int(row["Refeições Servidas"]) > 1:
+            if row['Tipo de Refeição'] == 'Almoço' and int(row["Num. Refeicões RU"]) > 1 and int(row["Num. Refeições Servidas"]) > 1:
                 menu = row['Cardápio']
                 for i in range(3):
                     mistura = menu.split('-')[i]
