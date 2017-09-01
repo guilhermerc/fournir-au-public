@@ -1,9 +1,17 @@
 #! /usr/bin/env bash
 
-arg_array=( "S@" )
+# Usage:
+# ./db_gen.sh input_database.csv filtered_output.csv whats_left.csv expression
 
+datainput="$1"
+tmpfile=".tmpout.csv"
 count=0
-for name in "$@"; do
-	./food_classifier.py output_${count}.csv "$name.csv" output_$((count+1)).csv "$name"
+cp "$datainput" "$tmpfile.${count}"
+
+for name in "${@:2}"; do
+	./food_classifier.py "$tmpfile.${count}" "$name.csv" "$tmpfile."$((count+1)) "$name"
+	rm "$tmpfile.${count}"
 	count=$((count+1))
 done
+
+mv "$tmpfile.${count}" "dataleft.csv"
