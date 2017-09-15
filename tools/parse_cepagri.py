@@ -11,7 +11,7 @@ try:
     stop_period = int(sys.argv[5])
 
 except:
-    print('Usage: input.csv')
+    print('Usage: datab.csv chosen_year chosen_day start_period stop_period')
     exit()
 
 with open(input_name, newline='') as csvinput_file:
