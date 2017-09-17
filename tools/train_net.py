@@ -73,12 +73,13 @@ with open(db_filename, newline='\n') as db_in:
 
 
 trainer = BackpropTrainer(neural_network, data_set) 
-for i in range(0, number):
-    trainer.trainEpochs(10)
-    print("Params: " + str(neural_network.params))
+#for i in range(0, number):
+#    trainer.trainEpochs(10)
+#    print("Params: " + str(neural_network.params))
     
 
-# trainer.trainUntilConvergence()
+trainer.trainUntilConvergence()
+print("Params: " + str(neural_network.params))
 
 #print("Params: " + str(neural_network.params))
 #print("Net: " + neural_network)
