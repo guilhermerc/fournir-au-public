@@ -58,7 +58,7 @@ with open(db_filename, newline='\n') as db_in:
         nutri_week.append(float(row[6]))
         vacation.append(float(row[7]))
         strike.append(float(row[8]))
-        target.append(float(row[3]))
+        target.append(int(row[3]))
     # normalizing values into -0.5 - 0.5 range
     day_of_the_week = normalize(day_of_the_week)
     month = normalize(month)
