@@ -41,6 +41,7 @@ int main(int argc, char *argv[])
     fann_train_on_file(ann, argv[1], max_epochs, epochs_between_reports, desired_error);
 
     fann_save(ann, argv[9]);
+	printf("Neural network saved to %s\n", argv[9]);
 
     fann_destroy(ann);
 
