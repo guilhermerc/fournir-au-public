@@ -9,3 +9,5 @@ solver: solve.o
 %.o: %.c
 	gcc -O3 -c $< -o $@
 
+clean:
+	rm -f *.o *.d trainer solver
