@@ -7,4 +7,5 @@ solver: solve.o
 	gcc -O3 $< -o $@ -lfloatfann -lm -lfann
 
 %.o: %.c
-	gcc -O3 -c 
+	gcc -O3 -c $< -o $@
+
