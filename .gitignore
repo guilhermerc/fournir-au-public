@@ -7,3 +7,12 @@
 auto-save-list
 tramp
 .\#*
+
+# Ignore data and neural network files
+*.csv
+*.data
+*.net
+
+# Ignore object and dependency files
+*.o
+*.d
