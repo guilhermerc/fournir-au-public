@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "floatfann.h"
+#include <floatfann.h>
 
 int main(int argc, char *argv[])
 {

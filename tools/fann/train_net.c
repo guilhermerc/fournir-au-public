@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "fann.h"
+#include <fann.h>
 
 struct fann *create_network(unsigned int inputs, unsigned int hidden_layers, unsigned int neurons_hidden, unsigned int outputs)
 {
