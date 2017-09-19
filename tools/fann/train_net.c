@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 			bestnet = fann_copy(ann);
 			lastmin = mse;
 		}
-		if (mse <= desired_error)
+		if (mse < desired_error)
 		{
 			break;
 		}
