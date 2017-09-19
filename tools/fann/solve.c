@@ -32,40 +32,50 @@ static struct argp_option options[] = {
 
 static error_t parse_opt(int key, char *arg, struct argp_state *state)
 {
-  struct arguments *arguments = state->input;
+	struct arguments *arguments = state->input;
 
-  switch (key)
-  {
-  case 's':
-      arguments->shellmode = 1;
-      break;
-  case 'n':
-      arguments->netfile = arg;
-      break;
-  case 'i':
-      arguments->input_db = arg;
-	  arguments->msemode = 1;
-      break;
+	switch (key)
+	{
+	case 's':
+		arguments->shellmode = 1;
+		break;
+	case 'n':
+		if (arguments->netfile != NULL)
+		{
+			printf("Only one neural network file should be specified\n");
+			argp_usage (state);
+		}
+		else arguments->netfile = arg;
+		break;
+	case 'i':
+		arguments->input_db = arg;
+		arguments->msemode = 1;
+		break;
 
-  case ARGP_KEY_ARG:
-      /* if (state->arg_num >= 2) */
-	  /* 	  /\* Too many arguments. *\/ */
-	  /* 	  argp_usage (state); */
+	case ARGP_KEY_ARG:
+		if (state->arg_num >= 2)
+			/* Too many arguments. */
+			argp_usage (state);
 
-      /* arguments->args[state->arg_num] = arg; */
+		/* arguments->args[state->arg_num] = arg; */
 
-      break;
+		break;
 
-  case ARGP_KEY_END:
-      /* if (state->arg_num < 2) */
-	  /* 	  /\* Not enough arguments. *\/ */
-	  /* 	  argp_usage (state); */
-      break;
+	case ARGP_KEY_END:
+		if (arguments->netfile == NULL)
+		{
+			printf("The neural network file must be specified\n");
+			argp_usage (state);
+		}
+		/* if (state->arg_num < 2) */
+		/* 	  /\* Not enough arguments. *\/ */
+		/* 	  argp_usage (state); */
+		break;
 
-  default:
-      return ARGP_ERR_UNKNOWN;
-  }
-  return 0;
+	default:
+		return ARGP_ERR_UNKNOWN;
+	}
+	return 0;
 }
 
 static struct argp argp = {options, parse_opt, args_doc, doc};
@@ -75,6 +85,7 @@ int main(int argc, char *argv[])
 	struct arguments inarg;
 	inarg.msemode = 0;
 	inarg.shellmode = 0;
+	inarg.netfile = NULL;
 	argp_parse (&argp, argc, argv, 0, 0, &inarg);
 	int interactive = inarg.shellmode;
 	
