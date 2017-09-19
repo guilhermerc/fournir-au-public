@@ -107,7 +107,7 @@ int main(int argc, char *argv[])
 		struct fann_train_data *valdata = fann_read_train_from_file(
 			inarg.input_db);
 		float res = fann_test_data(ann, valdata);
-		printf("%f\n", res);
+		printf("%.8f\n", res);
 		return 0;
 	}
 	else if (interactive)
@@ -138,7 +138,7 @@ int main(int argc, char *argv[])
 		
 		for (i = 0; i < num_outputs; i++)
 		{
-			printf("%f ", calc_out[i]);
+			printf("%.8f ", calc_out[i]);
 		}
 		printf("\n");
 		
