@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
 
 	fann_save(bestnet, outnetfile);
 	printf("Finished after %d epochs\n", epoch);
-	printf("Best error: %.8f Bit fail: %d\n", mse, fann_get_bit_fail(bestnet));
+	printf("Best error: %.8f Bit fail: %d\n", fann_test_data(bestnet, tdata), fann_get_bit_fail(bestnet));
 	printf("Neural network saved to %s\n", outnetfile);
 
 	fann_destroy_train(tdata);
