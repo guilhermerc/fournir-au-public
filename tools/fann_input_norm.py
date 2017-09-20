@@ -37,6 +37,7 @@ with open(db_input, newline='\n') as db_in:
     nutri_week = []
     vacation = []
     strike = []
+    total_enrolled = []
     target = []
     traindb = csv.reader(db_in, delimiter='\t', quotechar='"')
     for row in traindb:
@@ -50,7 +51,8 @@ with open(db_input, newline='\n') as db_in:
         nutri_week.append(float(row[6]))
         vacation.append(float(row[7]))
         strike.append(float(row[8]))
-        target.append(int(row[3]))
+        total_enrolled.append(float(row[9]))
+        target.append(float(row[3]))
     # normalizing values into -0.5 - 0.5 range
     day_of_the_week = normalize(day_of_the_week)
     month = normalize(month)
@@ -60,7 +62,10 @@ with open(db_input, newline='\n') as db_in:
     nutri_week = normalize(nutri_week)
     vacation = normalize(vacation)
     strike = normalize(strike)
+    total_enrolled = normalize(total_enrolled)
+    target = normalize(target)
     # input normalization for fann using 
+    print(str(len(target)) + ' 9 1') 
     for i in range(0, len(target)):
-         print(str(day_of_the_week[i]) + ' ' + str(month[i]) + ' ' + str(menu[i]) + ' ' + str(temp_avg[i]) + ' ' + str(rain_acc[i]) + ' ' + str(nutri_week[i]) + ' ' + str(vacation[i]))
+         print(str(day_of_the_week[i]) + ' ' + str(month[i]) + ' ' + str(menu[i]) + ' ' + str(temp_avg[i]) + ' ' + str(rain_acc[i]) + ' ' + str(nutri_week[i]) + ' ' + str(vacation[i]) + ' ' + str(strike[i]) + ' ' + str(total_enrolled[i]))
          print(str(target[i]))
