@@ -9,23 +9,12 @@ db_input = sys.argv[1]
 
 def normalize_elem(min_, max_, value):
     '''DESCUBRA'''
-    if max_ - min_ == 0:
-        return 0
     return (value - min_)/(max_ - min_) - 0.5
 
-def normalize(array):
+def normalize(array, min_, max_):
     '''DESCUBRA'''
-    max_ = array[0]
-    min_ = array[0]
-    for i in range(1, len(array)):
-        if array[i] > max_:
-            max_ = array[i]
-        if array[i] < min_:
-            min_ = array[i]
- 
     for i in range(0, len(array)):
         array[i] = normalize_elem(min_, max_, array[i])
-
     return array
 
 with open(db_input, newline='\n') as db_in:
@@ -54,16 +43,16 @@ with open(db_input, newline='\n') as db_in:
         total_enrolled.append(float(row[9]))
         target.append(float(row[3]))
     # normalizing values into -0.5 - 0.5 range
-    day_of_the_week = normalize(day_of_the_week)
-    month = normalize(month)
-    menu = normalize(menu)
-    temp_avg = normalize(temp_avg)
-    rain_acc = normalize(rain_acc)
-    nutri_week = normalize(nutri_week)
-    vacation = normalize(vacation)
-    strike = normalize(strike)
-    total_enrolled = normalize(total_enrolled)
-    target = normalize(target)
+    day_of_the_week = normalize(day_of_the_week, 0, 6)
+    month = normalize(month, 1, 12)
+    menu = normalize(menu, 0, 27) 
+    temp_avg = normalize(temp_avg, 5, 40)
+    rain_acc = normalize(rain_acc, 0, 100)
+    nutri_week = normalize(nutri_week, 0, 1)
+    vacation = normalize(vacation, 0, 1)
+    strike = normalize(strike, 0, 1)
+    total_enrolled = normalize(total_enrolled, 30000, 50000)
+    target = normalize(target, 1000, 13000)
     # input normalization for fann using 
     print(str(len(target)) + ' 9 1') 
     for i in range(0, len(target)):
